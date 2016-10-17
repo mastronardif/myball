@@ -32,27 +32,48 @@ namespace myball
             Testing();
 
             TimerCallback tmCallback = CheckEffectExpiry;
-            Timer timer = new Timer(tmCallback, "test", 1000, 4*1000);
+            Timer timer = new Timer(tmCallback, "test", 1000, 14*1000);
             Console.WriteLine("Press Enter key to exit the sample");
             Console.ReadLine();            
         }
 
-        static void CheckEffectExpiry(object objectInfo)
+        static int myRandom()
         {
-            //TODO put your code 
-            Console.WriteLine(DateTime.Now);
-            Console.WriteLine(objectInfo);
+            Random r = new Random();
+            int rInt = r.Next(0, 100); //for ints
+            int range = 100;
+            double rDouble = r.NextDouble() * range; //for doubles
+            Console.WriteLine("{0} {1} ", rInt, rDouble);
 
-            log.WarnFormat("Bewhare of the big bad log. {0}", DateTime.Now);
-            log.Info("Info Message: " + "Hey dude whats up?");
-            log.Debug("Debug Message: " + "review [my][you]");
-            log.Error("Error Message: " + "retval = [123:345]");
-            log.Fatal("Fatal Message: " + "I know out of memeory[low, very low]");
+            return rInt;
         }
 
+        static void CheckEffectExpiry(object objectInfo)
+        {
+            Console.WriteLine(DateTime.Now);
+            Console.WriteLine(objectInfo);
+            int iii = myRandom();
 
+            if ((iii % 4) == 0)
+            {
+                log.WarnFormat("Bewhare of the big bad log. {0}", DateTime.Now);
+            }
 
+            if ((iii % 2) == 0 )
+            {
+                log.Info("Info Message: " + "Hey dude whats up?");
+            }
+            
+            log.Debug("Debug Message: " + "review [my][you]");
+            //log.Error("Error Message: " + "retval = [123:345]");
+            //for (int i=0; i<10; i++) { myRandom(); }
 
+            if ((iii % 3) == 0)
+            {
+                Console.WriteLine("{0} ", iii);
+                log.Fatal("Fatal Message: " + "I know out of memeory[low, very low]");
+            }            
+        }
 
         internal static void Testing()
         {
