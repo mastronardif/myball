@@ -54,18 +54,22 @@ namespace myball
             Console.WriteLine(objectInfo);
             int iii = myRandom();
 
-            if ((iii % 4) == 0)
+            if ((iii % 2) == 0)
             {
                 log.WarnFormat("Bewhare of the big bad log. {0}", DateTime.Now);
             }
 
-            if ((iii % 2) == 0 )
+            if ((iii % 7) == 0 )
             {
                 log.Info("Info Message: " + "Hey dude whats up?");
             }
             
             log.Debug("Debug Message: " + "review [my][you]");
-            //log.Error("Error Message: " + "retval = [123:345]");
+
+            if ((iii % 5) == 0)
+            {
+                log.Error("Error Message: " + "retval = [123:345]");
+            }
             //for (int i=0; i<10; i++) { myRandom(); }
 
             if ((iii % 3) == 0)
